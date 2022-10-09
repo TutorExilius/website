@@ -451,9 +451,14 @@ class TodoApp():
     # ...
 
     def clear_clicked(self, e):
-        for task in self.tasks.controls[:]:
-            if task.completed:
-                self.task_delete(task)
+        completed_tasks = [
+            task
+            for task in self.tasks.controls
+            if task.completed
+        ]
+
+        for task in completed_tasks:
+            self.task_delete(task)
 
     def update(self):
         status = self.filter.tabs[self.filter.selected_index].text
